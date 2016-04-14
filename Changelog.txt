@@ -1,0 +1,23 @@
+Type what changes you have made to the project in format:
+[Date][Contributor]:
+-added ---------------
+-edited-----------------
+-removed----------------;
+
+[14.04.2016][iskren-penev]:
+Created the game layout acording the java game workshop:
+-added Launcher
+-added Display class (using JFrame and Canvas)
+	*set the frame and the canvas
+-added Game class (the body of the game):
+	* init(), tick(), render(), stop() and start() methods
+	* implements run() method
+-added abstract State class
+	*abstract tick() and abstract render(Graphics g)
+-added StateManager class
+	*setState() and getState() methods 
+-added GameState (body structure of all states)
+	*overrides the abstract tick() and render() methods
+-added ImageLoader class - used to display the image
+-added "resources" directory (project library), background image(jpg) and card spritesheet (png)
+The application displays the background image and shows the FPS;
