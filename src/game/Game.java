@@ -4,10 +4,8 @@ import display.Display;
 import graphics.Assets;
 import graphics.ImageLoader;
 import graphics.SpriteSheet;
-import states.StateManager;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.image.*;
 
 public class Game implements Runnable {
@@ -51,12 +49,8 @@ public class Game implements Runnable {
         this.display = new Display(this.name, this.width, this.height);
         this.background = ImageLoader.loadImage("/background2.jpg");
         this.sh = new SpriteSheet(ImageLoader.loadImage("/classic-playing-cards.png"));
-
         this.inputHandler = new InputHandler(this.display);
-
-
         Assets.init();
-
         cardDeck= new Deck();
         slot1 = new Slot1(cardDeck);
         slot2 = new Slot2(cardDeck);
@@ -72,7 +66,58 @@ public class Game implements Runnable {
 
     public void tick() {
         int[] value = new int[2];
-
+        for (int i = 0; i < 2; i++) {
+            if (slot1.isClicked){
+                value[i] = slot1.getValue();
+            } else if (slot2.isClicked) {
+                value[i] = slot2.getValue();
+            } else if (slot3.isClicked) {
+                value[i] = slot3.getValue();
+            } else if (slot4.isClicked) {
+                value[i] = slot4.getValue();
+            } else if (slot5.isClicked) {
+                value[i] = slot5.getValue();
+            } else if (slot6.isClicked) {
+                value[i] = slot6.getValue();
+            } else if (slot7.isClicked) {
+                value[i] = slot7.getValue();
+            } else if (slot8.isClicked) {
+                value[i] = slot8.getValue();
+            } else if (slot9.isClicked) {
+                value[i] = slot9.getValue();
+            }
+        }
+        if (value[0] == value[1] && value[0] != 100){
+            score += 3;
+        }
+        if (slot1.isClicked){
+            slot1.tick(cardDeck);
+            slot1.isClicked = false;
+        } else if (slot2.isClicked) {
+            slot2.tick(cardDeck);
+            slot2.isClicked = false;
+        } else if (slot3.isClicked) {
+            slot3.tick(cardDeck);
+            slot3.isClicked = false;
+        } else if (slot4.isClicked) {
+            slot4.tick(cardDeck);
+            slot4.isClicked = false;
+        } else if (slot5.isClicked) {
+            slot5.tick(cardDeck);
+            slot5.isClicked = false;
+        } else if (slot6.isClicked) {
+            slot6.tick(cardDeck);
+            slot6.isClicked = false;
+        } else if (slot7.isClicked) {
+            slot7.tick(cardDeck);
+            slot7.isClicked = false;
+        } else if (slot8.isClicked) {
+            slot8.tick(cardDeck);
+            slot8.isClicked = false;
+        } else if (slot9.isClicked) {
+            slot9.tick(cardDeck);
+            slot9.isClicked = false;
+        }
 
 
     }
@@ -84,11 +129,12 @@ public class Game implements Runnable {
             this.bs = this.display.getCanvas().getBufferStrategy();
         }
         this.g = this.bs.getDrawGraphics();
-        /*clear the screen at every frame*/
+       
         this.g.clearRect(0, 0, this.width, this.height);
 
         g.drawImage(background, 0, 0, this.width, this.height, null);
-
+        g.setColor(Color.WHITE);
+        g.drawString(String.format("SCORE: %d", score),263, 550);
         slot1.render(g);
         slot2.render(g);
         slot3.render(g);
@@ -117,6 +163,7 @@ public class Game implements Runnable {
         int ticks = 0;
 
         while (isRunning) {
+
             now = System.nanoTime();
             delta += (now - lastTime) / timePerTick;
             timer += now - lastTime;
@@ -129,6 +176,7 @@ public class Game implements Runnable {
             }
             if (timer >= 1_000_000_000) {
                 System.out.println("Frames: " + ticks);
+
                 ticks = 0;
                 timer = 0;
             }

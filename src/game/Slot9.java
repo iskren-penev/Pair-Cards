@@ -7,13 +7,26 @@ public class Slot9 {
     private static final int y = 373;
     private Rectangle boundingBox = new Rectangle(73,98);
     private Card currentCard;
+    public static boolean isClicked;
 
     public Slot9(Deck deck) {
         this.currentCard = deck.drawFromDeck();
         this.boundingBox.setBounds(x, y , 73, 98);
+        isClicked = false;
     }
 
-    public void tick(){
+    public boolean isChosen(Rectangle r){
+        if (this.boundingBox.contains(r)|| r.contains(this.boundingBox)){
+            return true;
+        }
+        return false;
+    }
+    public int getValue() {
+        return currentCard.getCardValue();
+    }
+
+    public void tick(Deck deck){
+        this.currentCard = deck.drawFromDeck();
 
     }
     public void render(Graphics g){

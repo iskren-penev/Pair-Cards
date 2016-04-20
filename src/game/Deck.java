@@ -41,7 +41,7 @@ public class Deck {
         if (cards.size() != 0) {
             return cards.remove(cards.size() - 1);
         } else { //draw Joker when there are no more cards in the deck
-            return new Card(5, 14, Assets.joker);
+            return new Card(100, 100, Assets.joker);
         }
     }
 }
