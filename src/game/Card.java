@@ -7,14 +7,13 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Card {
-    private String cardSuit;
+    private int cardSuit;
     private int cardValue;
     private int width, height;
     private BufferedImage image;
-    private boolean isPlayed;
     private Rectangle boundingBox;
 
-    public Card(String name, int value, BufferedImage image) {
+    public Card(int name, int value, BufferedImage image) {
         this.cardSuit = name;
         this.cardValue = value;
         this.image = image;
@@ -23,7 +22,7 @@ public class Card {
         this.boundingBox = new Rectangle(this.width, this.height);
     }
 
-    public String getCardSuit() {
+    public int getCardSuit() {
         return cardSuit;
     }
 
@@ -35,19 +34,7 @@ public class Card {
         return image;
     }
 
-    public boolean isPlayed() {
-        return isPlayed;
-    }
 
-    public void setPlayed(boolean played) {
-        isPlayed = played;
-    }
 
-    /*public void tick() {
 
-    }
-
-    public void render(Graphics g) {
-        g.drawImage(Assets.diamondsA, 300, 400, null);
-    }*/
 }
